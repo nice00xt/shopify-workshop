@@ -1,3 +1,5 @@
+{% assign main_menu_linklist = linklists[section.settings.menu_link].links %}
+
 <div class="navbar bg-base-100">
   <div class="navbar-start">
     <div class="dropdown">
@@ -9,11 +11,11 @@
         <li><a>Cart</a></li>
       </ul>
     </div>
-    <a class="btn btn-ghost normal-case text-xl">{{ shop.name  }}</a>
+    <a class="btn btn-ghost normal-case text-xl">{{ section.settings.menu_title }}</a>
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-      {% for link in linklists.main-menu.links %}
+      {% for link in main_menu_linklist %}
         {% if link.links != blank %}
           <li>
             <details>
@@ -45,3 +47,24 @@
     </ul>
   </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Navigation Bar",
+    "settings": [
+      {
+        "type": "text",
+        "id": "menu_title",
+        "label": "Title main",
+        "default": "Menu",
+        "info": "Description main"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_link",
+        "label": "Header Menu",
+        "default": "main-menu"
+      }
+    ]
+  }
+{% endschema %}
