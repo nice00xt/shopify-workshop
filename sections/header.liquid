@@ -1,5 +1,4 @@
 {% assign main_menu_linklist = linklists[section.settings.menu_link].links %}
-
 <div class="navbar bg-base-100">
   <div class="navbar-start">
     <div class="dropdown">
@@ -39,11 +38,13 @@
   </div>
   <div class="navbar-end">
     <ul class="menu menu-horizontal px-1">
-      <li><a href="{{ routes.account_login_url }}">Login</a></li>
-      <li><a href="{{ routes.account_register_url }}">Register</a></li>
-      <li><a href="{{ routes.cart_url }}">
-        {% render 'icon-shopping-cart' %}
-      </a></li>
+      {% if shop.customer_accounts_enabled %}        
+        <li><a href="{{ routes.account_login_url }}">Login</a></li>
+        <li><a href="{{ routes.account_register_url }}">Register</a></li>
+      {% endif %}
+      <li>
+        <a href="{{ routes.cart_url }}">{% render 'icon-shopping-cart' %}</a>
+      </li>
     </ul>
   </div>
 </div>

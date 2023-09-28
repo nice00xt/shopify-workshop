@@ -1,0 +1,26 @@
+<div class="text-white flex items-center justify-center h-screen">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-md">
+        <h1 class="text-4xl font-bold mb-4">{{ section.settings.title }}</h1>
+        <p class="text-lg mb-8">{{ section.settings.subtext_title }}</p>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Template 404",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "404",
+        "label": "404 Heading Title"
+      },
+      {
+        "type": "text",
+        "id": "subtext_title",
+        "default": "The page that you're looking for is not found",
+        "label": "404 Subtext title"
+      }
+    ]
+  }
+{% endschema %}
