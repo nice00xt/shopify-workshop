@@ -20,6 +20,7 @@
                     <a class="text-xl font-semibold" href="{{ item.product.url }}">{{ item.title | truncatewords: 5 }}</a>
                     <p class="text-gray-500">{{ item.variant.title }}</p>
                     <a class="text-red-500" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0">remove</a>
+                    
                     <p class="text-gray-200 font-semibold">{{ item.line_price | money }}</p>
                   </div>
                 </div>
@@ -48,3 +49,26 @@
         </div>
     {% endif %}
 </div>
+
+{% schema %}
+  {
+    "name": "Template Cart",
+    "blocks": [
+      {
+        "type": "subtotal",
+        "name": "Subtotal",
+        "limit": 1
+      },
+      {
+        "type": "update_button",
+        "name": "Update Button",
+        "limit": 1
+      },
+      {
+        "type": "checkout_button",
+        "name": "Checkout Button",
+        "limit": 1
+      }
+    ]
+  }
+{% endschema %}
