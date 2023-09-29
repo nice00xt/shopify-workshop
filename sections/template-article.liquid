@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white py-8">
+<div class="text-gray-800 dark:text-white py-8">
   <div class="container mx-auto px-4">
     <article>
       {% for block in section.blocks %}
@@ -21,8 +21,39 @@
         {% endcase %}
       {% endfor %}
     </article>
+      <br><br>
+    {% if blog.comments_enabled? %}
+      {% if article.comments_count > 0 %}
+      
+      {% else %}      
+        there are no comments in this article
+      {% endif %}
+      <div>
+
+      {%  form  'new_comment', article %}
+        <div className="form-control mb-5 flex flex-col w-full">
+          <label for="comment_author">Name</label>
+          <input type="text" name="comment[author]" id="comment_author" class="input input-bordered w-full max-w-xs" required>
+        </div>
+        <div className="form-control mb-5 flex flex-col w-full">
+          <label for="comment_email">Email</label>
+          <input type="email" name="comment[email]" id="comment_email" class="input input-bordered w-full max-w-xs" required>
+        </div>
+        <div className="form-control mb-5">
+          <label for="comment_content">Comment</label>
+          <textarea name="comment[body]" id="comment_content" className="textarea textarea-bordered textarea-lg w-full max-w-xs"></textarea>
+        </div>
+        <div className="form-control mb-5">
+          <input type="submit" value="Post comment">
+        </div>
+      {% endform %}
+
+      </div>
+    {% endif %}
+
   </div>
 </div>
+
 
 {% schema %}
   {

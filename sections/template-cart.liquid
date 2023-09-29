@@ -1,0 +1,50 @@
+<div class="container mx-auto py-8">
+  {% if cart.item_count > 0 %}
+      <h1 class="text-2xl font-semibold mb-4">Shopping Cart</h1>
+      <form action="{{ routes.cart_url }}" method="POST" novalidate class="mb-5">
+        <ul class="grid grid-cols-1 gap-4">
+          {% for item in cart.items %}
+            <li class="bg-slate-700 p-4 shadow-lg rounded-lg">
+              <div class="flex flex-row justify-between items-center">
+                <div class="flex flex-row w-full">
+                  <a href="{{ item.url }}">
+                    {% if item.image %}
+                      <div class="flex-shrink-0">
+                        <img src="{{ item.image | img_url: small }}" alt="{{ item.title | escape }}" class="w-20 h-20 object-cover">
+                      </div>
+                    {% else %}
+                      {{ 'product 1' | placeholder_svg_tag: 'w-20 h-20 object-cover border' }}    
+                    {% endif %}
+                  </a>
+                  <div class="ml-4">
+                    <a class="text-xl font-semibold" href="{{ item.product.url }}">{{ item.title | truncatewords: 5 }}</a>
+                    <p class="text-gray-500">{{ item.variant.title }}</p>
+                    <a class="text-red-500" href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0">remove</a>
+                    <p class="text-gray-200 font-semibold">{{ item.line_price | money }}</p>
+                  </div>
+                </div>
+                <div>
+                  <input class="input input-bordered w-full" type="number" name="updates[]" min="1" id="updates_{{ forloop.index }}" value="{{ item.quantity }}">
+                </div>
+
+              </div>
+            </li>
+          {% endfor %}
+          <li class="bg-slate-700 p-4 shadow-lg rounded-lg flex flex-row justify-between items-center">
+            <h3 class="font-semibold">SUBTOTAL</h3>
+            <span class="font-bold">{{ cart.total_price | money }}</span>
+          </li>
+        </ul>
+        <div class="mt-5 flex flex-row items-center justify-between">
+          <a class="btn btn-neutral" href="{{ routes.all_products_collection_url }}">Continue Shoping</a>
+          <button class="btn" name="update" type="submit">UPDATE</button>
+          <button class="btn btn-accent" type="submit" name="checkout">Checkout</button>
+        </div>
+      </form>
+    {% else %}
+        <div class="flex flex-col items-center justify-center">
+          <div class="mb-5">Yuor cart is empty</div>
+          <a class="btn" href="{{ routes.all_products_collection_url }}">Continue shoping</a>
+        </div>
+    {% endif %}
+</div>
