@@ -1,7 +1,7 @@
 {% paginate collection.products by sections.settings.products_per_page %}
   <section class="container mx-auto py-8 gap-4">
     <h1 class="text-2xl font-semibold mb-4">{{ collection.title }}</h1>
-    <div class="grid grid-cols-4 gap-4">
+    <div class="grid sm:grid-cols-1 md:grid-cols-4 gap-4">
       {% for product in collection.products %}
         {% render 'product-cart', product: product %}
         {% else %}
