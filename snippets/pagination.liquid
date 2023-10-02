@@ -1,0 +1,19 @@
+{% if pagination.pages > 0 %}
+  <div class="flex justify-center w-full items-center">
+    <nav role="navigation" class="join">
+      {% if pagination.previous %}  
+        <a class="join-item btn btn-md" href="{{ pagination.previous.url }}">{{ pagination.previous.title }}</a>
+      {% endif %}
+      {% for part in pagination.parts %}
+        {% if part.is_link %}
+          <a class="join-item btn btn-md" href="{{ part.part.url }}">{{ pagination.part.title }}</a>
+        {% else %}
+            <span class="join-item btn btn-md">{{ part.title }}</span>
+        {% endif %}
+      {% endfor %}
+      {% if pagination.next %}
+        <a class="join-item btn-md" href="{{ pagination.next.url }}">{{ pagination.next.title }}</a>
+      {% endif %}
+    </nav>
+  </div>
+{% endif %}
