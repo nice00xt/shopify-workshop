@@ -1,28 +1,32 @@
 <!-- /templates/customers/login.liquid -->
 
-<h2>Login</h2>
-{% form 'customer_login' %}
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <div class="card_body p-10 w-[400px]">
+        {% form 'customer_login' %}
+          {{ form.errors | default_errors }}
+            <div class="form-control">
+              <label class="label" for="customer_email">
+                <span class="label-text">Email</span>
+              </label>
+              <input type="email" placeholder="email" name="customer[email]" class="input input-bordered" required />
+            </div>
+            <div class="form-control">
+              <label class="label" for="customer_password">
+                <span class="label-text" name="customer[password]">Password</span>
+              </label>
+              <input type="password" placeholder="password" class="input input-bordered" required />
+              <label class="label">
+                <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+              </label>
+            </div>
+            <div class="form-control mt-6">
+              <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        {% endform %}
+      </div>
 
-{{ form.errors | default_errors }}
-
-<label for="customer_email">Email Address</label>
-<input type="email" name="customer[email]" />
-
-<label for="customer_password">Password</label>
-<input type="password" name="customer[password]" />
-
-<input type="submit" value="Sign In" />
-
-{% endform %}
-
-<h2>Forgot Password</h2>
-{% form 'recover_customer_password' %}
-
-{{ form.errors | default_errors }}
-
-<label for="customer_email">Email Address</label>
-<input type="email" name="email" />
-
-<input type="submit" value="Submit" />
-
-{% endform %}
+    </div>
+  </div>
+</div>

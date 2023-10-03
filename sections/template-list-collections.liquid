@@ -1,0 +1,37 @@
+<div class="mb-40">
+  {% for collection in collections %}
+    {% if collection.all_products_count > 0 %}
+      {% if condition.featured_image != blank %}
+        {% assign collection_image = collection.featured_image %}
+      {% else %}
+        {% assign collection_image = collection.products.first.image %}
+      {% endif %}
+      <div class="hero min-h-fit pt-36">
+        <div class="hero-content flex-col lg:flex-row">
+          <img class="max-w-sm rounded-lg shadow-2xl" src="{{ collection.featured_image | img_url: 'medium' }}" alt="{{ collection.title | escape }}">
+          <div>
+            <h1 class="text-5xl font-bold">{{ collection.title }}</h1>
+            <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <a href="{{ collection.url }}" class="btn btn-primary">See products</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Template list Collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "Collections",
+        "label": "title"
+      }
+    ]
+  }
+{% endschema %}

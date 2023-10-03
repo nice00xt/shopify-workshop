@@ -732,7 +732,17 @@ html {
   }
 }
 
+.avatar.placeholder > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (hover:hover) {
+  .link-hover:hover {
+    text-decoration-line: underline;
+  }
+
   .label a:hover {
     --tw-text-opacity: 1;
     color: hsl(var(--bc) / var(--tw-text-opacity));
@@ -1002,6 +1012,13 @@ html {
     background-color: hsl(var(--b3) / var(--tw-bg-opacity));
   }
 
+  .btn-primary:hover {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--pf) / var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--pf) / var(--tw-bg-opacity));
+  }
+
   .btn-accent:hover {
     --tw-border-opacity: 1;
     border-color: hsl(var(--af) / var(--tw-border-opacity));
@@ -1025,6 +1042,15 @@ html {
     --tw-border-opacity: 0;
     background-color: hsl(var(--bc) / var(--tw-bg-opacity));
     --tw-bg-opacity: 0.2;
+  }
+
+  .btn-outline.btn-primary:hover {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--pf) / var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--pf) / var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: hsl(var(--pc) / var(--tw-text-opacity));
   }
 
   .btn-outline.btn-accent:hover {
@@ -1119,6 +1145,29 @@ html {
   padding-bottom: 0.5rem;
 }
 
+.hero {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero > * {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.hero-content {
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 80rem;
+  gap: 1rem;
+  padding: 1rem;
+}
+
 .input {
   flex-shrink: 1;
   height: 3rem;
@@ -1206,6 +1255,10 @@ html {
   text-decoration-line: underline;
 }
 
+.link-hover {
+  text-decoration-line: none;
+}
+
 .menu {
   display: flex;
   flex-direction: column;
@@ -1285,6 +1338,23 @@ html {
 .navbar-end {
   width: 50%;
   justify-content: flex-end;
+}
+
+.range {
+  height: 1.5rem;
+  width: 100%;
+  cursor: pointer;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  --range-shdw: var(--bc);
+  overflow: hidden;
+  background-color: transparent;
+  border-radius: var(--rounded-box, 1rem);
+}
+
+.range:focus {
+  outline: none;
 }
 
 .select {
@@ -1406,6 +1476,23 @@ html {
   outline-offset: 2px;
 }
 
+.btn-primary {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--p) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--p) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--pc) / var(--tw-text-opacity));
+  outline-color: hsl(var(--p) / 1);
+}
+
+.btn-primary.btn-active {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--pf) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--pf) / var(--tw-bg-opacity));
+}
+
 .btn-accent {
   --tw-border-opacity: 1;
   border-color: hsl(var(--a) / var(--tw-border-opacity));
@@ -1467,6 +1554,20 @@ html {
   --tw-border-opacity: 0;
   background-color: hsl(var(--bc) / var(--tw-bg-opacity));
   --tw-bg-opacity: 0.2;
+}
+
+.btn-outline.btn-primary {
+  --tw-text-opacity: 1;
+  color: hsl(var(--p) / var(--tw-text-opacity));
+}
+
+.btn-outline.btn-primary.btn-active {
+  --tw-border-opacity: 1;
+  border-color: hsl(var(--pf) / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--pf) / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: hsl(var(--pc) / var(--tw-text-opacity));
 }
 
 .btn-outline.btn-accent {
@@ -1671,6 +1772,20 @@ html {
   --tw-scale-x: 1;
   --tw-scale-y: 1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.label-text {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: hsl(var(--bc) / var(--tw-text-opacity));
+}
+
+.label-text-alt {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --tw-text-opacity: 1;
+  color: hsl(var(--bc) / var(--tw-text-opacity));
 }
 
 .input[list]::-webkit-calendar-picker-indicator {
@@ -1902,6 +2017,65 @@ html {
     box-shadow: 0 0 0 4px hsl(var(--b1)) inset,
       0 0 0 4px hsl(var(--b1)) inset;
   }
+}
+
+.range:focus-visible::-webkit-slider-thumb {
+  --focus-shadow: 0 0 0 6px hsl(var(--b1)) inset, 0 0 0 2rem hsl(var(--range-shdw)) inset;
+}
+
+.range:focus-visible::-moz-range-thumb {
+  --focus-shadow: 0 0 0 6px hsl(var(--b1)) inset, 0 0 0 2rem hsl(var(--range-shdw)) inset;
+}
+
+.range::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  width: 100%;
+  background-color: hsl(var(--bc) / 0.1);
+  border-radius: var(--rounded-box, 1rem);
+}
+
+.range::-moz-range-track {
+  height: 0.5rem;
+  width: 100%;
+  background-color: hsl(var(--bc) / 0.1);
+  border-radius: var(--rounded-box, 1rem);
+}
+
+.range::-webkit-slider-thumb {
+  position: relative;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-style: none;
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b1) / var(--tw-bg-opacity));
+  border-radius: var(--rounded-box, 1rem);
+  appearance: none;
+  -webkit-appearance: none;
+  top: 50%;
+  color: hsl(var(--range-shdw));
+  transform: translateY(-50%);
+  --filler-size: 100rem;
+  --filler-offset: 0.6rem;
+  box-shadow: 0 0 0 3px hsl(var(--range-shdw)) inset,
+      var(--focus-shadow, 0 0),
+      calc(var(--filler-size) * -1 - var(--filler-offset)) 0 0 var(--filler-size);
+}
+
+.range::-moz-range-thumb {
+  position: relative;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-style: none;
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b1) / var(--tw-bg-opacity));
+  border-radius: var(--rounded-box, 1rem);
+  top: 50%;
+  color: hsl(var(--range-shdw));
+  --filler-size: 100rem;
+  --filler-offset: 0.5rem;
+  box-shadow: 0 0 0 3px hsl(var(--range-shdw)) inset,
+      var(--focus-shadow, 0 0),
+      calc(var(--filler-size) * -1 - var(--filler-offset)) 0 0 var(--filler-size);
 }
 
 @keyframes rating-pop {
@@ -2331,6 +2505,10 @@ html {
   margin-bottom: 1rem;
 }
 
+.mb-40 {
+  margin-bottom: 10rem;
+}
+
 .mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -2349,6 +2527,10 @@ html {
 
 .mt-5 {
   margin-top: 1.25rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
 .block {
@@ -2391,6 +2573,15 @@ html {
   height: 100vh;
 }
 
+.min-h-fit {
+  min-height: -moz-fit-content;
+  min-height: fit-content;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .w-20 {
   width: 5rem;
 }
@@ -2407,8 +2598,16 @@ html {
   width: 24rem;
 }
 
+.w-\[400px\] {
+  width: 400px;
+}
+
 .w-full {
   width: 100%;
+}
+
+.max-w-sm {
+  max-width: 24rem;
 }
 
 .max-w-xs {
@@ -2421,10 +2620,6 @@ html {
 
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-.grid-cols-4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -2464,6 +2659,11 @@ html {
   background-color: hsl(var(--b1) / var(--tw-bg-opacity));
 }
 
+.bg-base-200 {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b2) / var(--tw-bg-opacity));
+}
+
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
@@ -2477,6 +2677,10 @@ html {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.p-10 {
+  padding: 2.5rem;
 }
 
 .p-2 {
@@ -2501,9 +2705,18 @@ html {
   padding-right: 1rem;
 }
 
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.pt-36 {
+  padding-top: 9rem;
 }
 
 .text-2xl {
@@ -2514,6 +2727,11 @@ html {
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .text-lg {
@@ -2574,6 +2792,12 @@ html {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-2xl {
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow-lg {
   --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
@@ -2623,5 +2847,13 @@ html {
 
   .lg\:hidden {
     display: none;
+  }
+
+  .lg\:flex-row {
+    flex-direction: row;
+  }
+
+  .lg\:flex-row-reverse {
+    flex-direction: row-reverse;
   }
 }
