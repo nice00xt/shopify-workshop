@@ -43,7 +43,12 @@
         <li><a href="{{ routes.account_register_url }}">Register</a></li>
       {% endif %}
       <li>
-        <a href="{{ routes.cart_url }}">{% render 'icon-shopping-cart' %}</a>
+        <a href="{{ routes.cart_url }}" class="btn">
+          {% render 'icon-shopping-cart' %}
+          {% if cart.item_count > 0 %}
+            <div class="badge badge-secondary">{{ cart.item_count }}</div>
+          {% endif %}
+        </a>
       </li>
     </ul>
   </div>
