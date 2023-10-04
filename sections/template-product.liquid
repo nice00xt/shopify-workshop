@@ -26,22 +26,26 @@
       </div>
     </div>
     <div class="grid flex-grow card">
+
       <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="flex flex-col justify-between">
         <div>
           <h1 class="font-bold text-4xl">{{ product.title }}</h1>
-          <select name="id" id="productSelect" class="mt-5 select select-ghost w-full max-w-xs">
-            {% for variant in product.variants %}
-              {% if variant.available %}
-                <option value="{{ variant.id }}">
-                  {{ variant.title }} - {{ variant.price | money_with_currency }}
-                </option>
-              {% else %}
-                <option disabled="disabled">
-                  {{ variant.title }} - sold out
-                </option>
-              {% endif %}
-            {% endfor %}
-          </select>
+          <div class="form-control w-full">
+            <label for="" class="label">color</label>
+            <select name="id" id="productSelect" class="mt-5 select select-bordered">
+              {% for variant in product.variants %}
+                {% if variant.available %}
+                  <option value="{{ variant.id }}">
+                    {{ variant.title }} - {{ variant.price | money_with_currency }}
+                  </option>
+                {% else %}
+                  <option disabled="disabled">
+                    {{ variant.title }} - sold out
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
           <div class="mt-5">{{ product.description }}</div>
         </div>
 

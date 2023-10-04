@@ -2187,21 +2187,15 @@ html {
   }
 }
 
+.select-bordered {
+  --tw-border-opacity: 0.2;
+}
+
 .select:focus {
   outline-style: solid;
   outline-width: 2px;
   outline-offset: 2px;
   outline-color: hsl(var(--bc) / 0.2);
-}
-
-.select-ghost {
-  --tw-bg-opacity: 0.05;
-}
-
-.select-ghost:focus {
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  color: hsl(var(--bc) / var(--tw-text-opacity));
 }
 
 .select-disabled,
