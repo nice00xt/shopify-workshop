@@ -1,29 +1,57 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-<img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
-{% for image in product.images %}
-  <a href="{{ image.src | img_url: 'large' }}">
-    <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-  </a>
-{% endfor %}
-<h1>{{ product.title }}</h1>
-<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-  <select name="id" id="productSelect">
-    {% for variant in product.variants %}
-      {% if variant.available %}
-        <option value="{{ variant.id }}">
-          {{ variant.title }} - {{ variant.price | money_with_currency }}
-        </option>
-      {% else %}
-        <option disabled="disabled">
-          {{ variant.title }} - sold out
-        </option>
-      {% endif %}
-    {% endfor %}
-  </select>
-  {{ current_variant.price | money }}
-  <label for="Quantity">quantity</label>
-  <input type="number" id="Quantity" name="quantity" value="1" min="1">
-  <button type="submit" name="add" id="AddToCart">Add to cart</button>
-</form>
-<div>{{ product.description }}</div>
+
+<div class="container mx-auto py-8 h-full">
+  <div class="flex w-full">
+    <div class="grid flex-grow card place-items-center overflow-hidden">
+      <div class="carousel w-[400px]">
+        {% for image in product.images %}
+          <div id="item{{ forloop.index }}" class="carousel-item w-full">
+            <div class="card w-96 bg-base-100 shadow-xl">
+              <figure>
+                <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" class="w-full object-cover">
+              </figure>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="flex justify-center w-full py-2 gap-2 mt-5">
+        {% for image in product.images %}
+          <div class="avatar">
+            <a href="#item{{ forloop.index }}" class="w-20 rounded">
+              <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="grid flex-grow card">
+      <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="flex flex-col justify-between">
+        <div>
+          <h1 class="font-bold text-4xl">{{ product.title }}</h1>
+          <div>{{ product.description }}</div>
+          <select name="id" id="productSelect" class="mt-5 select select-ghost w-full max-w-xs">
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                <option value="{{ variant.id }}">
+                  {{ variant.title }} - {{ variant.price | money_with_currency }}
+                </option>
+              {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - sold out
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="flex flex-col">
+          <span class="font-bold mb-5 text-2xl">{{ current_variant.price | money }}</span>
+          <input class="input input-bordered w-full" type="number" id="Quantity" name="quantity" value="1" min="1">
+          <button type="submit" name="add" id="AddToCart" class="btn btn-accent mt-5">Add to cart</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
