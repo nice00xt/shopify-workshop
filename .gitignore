@@ -1,3 +1,7 @@
+.DS_Store
+.DS_Store?
 package.json
 package-lock.json
+yarn.lock
 /node_modules
+/components/node_modules
