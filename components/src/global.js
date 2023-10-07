@@ -1,1 +1,1 @@
-console.log("global -x-d--");
+console.log("global test");
