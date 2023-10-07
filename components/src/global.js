@@ -1,1 +1,1 @@
-console.log("global JS ----");
+console.log("global JS --d-sss-");
