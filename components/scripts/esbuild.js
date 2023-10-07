@@ -1,27 +1,31 @@
 import esbuild from 'esbuild';
-import { sassPlugin } from 'esbuild-sass-plugin';
 import watch from 'node-watch';
+import { readdirSync } from 'fs';
 
-async function build() {
+async function buildJSFiles() {
+  const entryPoints = readdirSync('./src')
+    .filter((file) => file.endsWith('.js'))
+    .map((file) => `./src/${file}`);
+
   try {
     await esbuild.build({
-      entryPoints: [
-        './src/styles/index.css',
-        './src/global.js'
-      ],
+      entryPoints,
       bundle: true,
       minify: true,
       outdir: './../assets',
-      plugins: [sassPlugin()],
     });
-    console.log('Build successful');
+    console.log('✅ Build successful');
   } catch (error) {
-    console.error('Build error:', error);
+    console.error('❌ Build error:', error);
   }
 }
 
+async function build() {
+  await buildJSFiles();
+}
+
 watch('./src', { recursive: true }, (evt, filename) => {
-  console.log(`File ${filename} changed`);
+  console.log(`✨ File ${filename} changed`);
   build();
 });
 
