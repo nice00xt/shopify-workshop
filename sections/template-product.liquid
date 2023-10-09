@@ -1,8 +1,9 @@
-{{ 'product.js' | asset_url | script_tag }}
+{{ 'component-product.js' | asset_url | script_tag }}
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 
-<product-component></product-component>
+<product-component product='{{ product | json }}'></product-component>
+
 <div class="container mx-auto py-8 h-full">
   <div class="flex w-full">
     <div class="grid flex-grow card place-items-center overflow-hidden">

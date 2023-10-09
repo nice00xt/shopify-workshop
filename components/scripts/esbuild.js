@@ -2,7 +2,7 @@ import esbuild from 'esbuild';
 import watch from 'node-watch';
 import { readdirSync } from 'fs';
 
-async function buildJSFiles() {
+async function build() {
   const entryPoints = readdirSync('./src')
     .filter((file) => file.endsWith('.js'))
     .map((file) => `./src/${file}`);
@@ -18,10 +18,6 @@ async function buildJSFiles() {
   } catch (error) {
     console.error('❌ Build error:', error);
   }
-}
-
-async function build() {
-  await buildJSFiles();
 }
 
 watch('./src', { recursive: true }, (evt, filename) => {
