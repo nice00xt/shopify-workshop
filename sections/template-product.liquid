@@ -2,12 +2,20 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
 
-<product-component product='{{ product | json }}'></product-component>
+
+<div class="container mx-auto py-8 h-full">
+  <product-component
+    product='{{ product | json }}'
+    currentVariant='{{ current_variant | json }}'
+  ></product-component>
+</div>
 
 <div class="container mx-auto py-8 h-full">
   <div class="flex w-full">
+
     <div class="grid flex-grow card place-items-center overflow-hidden">
       <div class="carousel w-[400px]">
+
         {% for image in product.images %}
           <div id="item{{ forloop.index }}" class="carousel-item w-full">
             <div class="card w-96 bg-base-100 shadow-xl">
@@ -17,6 +25,7 @@
             </div>
           </div>
         {% endfor %}
+
       </div>
       <div class="flex justify-center w-full py-2 gap-2 mt-5">
         {% for image in product.images %}
@@ -28,8 +37,8 @@
         {% endfor %}
       </div>
     </div>
+    
     <div class="grid flex-grow card">
-
       <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm" class="flex flex-col justify-between">
         <div>
           <h1 class="font-bold text-4xl">{{ product.title }}</h1>
@@ -59,6 +68,8 @@
         </div>
 
       </form>
+      
     </div>
+
   </div>
 </div>
