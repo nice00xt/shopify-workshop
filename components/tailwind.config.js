@@ -2,7 +2,12 @@
 
 module.exports = {
   content: [
-    "./src/styles/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,css,scss}",
+    '../layout/*.liquid',
+    '../sections/*.liquid',
+    '../snippets/*.liquid',
+    '../templates/customers/*.liquid',
+    '../templates/*.liquid'
   ],
   theme: {
     extend: {},
